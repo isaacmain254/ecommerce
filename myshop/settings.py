@@ -121,6 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, "static"),
 # )
@@ -137,10 +138,18 @@ NEDIA_ROOT = BASE_DIR / 'media'
 # session
 CART_SESSION_ID = 'cart'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # STRIPE CONFIGURATIONS
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51NxZVrLeOSiFv2tSB6y6CWZfyjMGq14NLicGDQWoJNtdiWE9tCdxogb5Dd35L3ZyZGHNSThjH5kNtV2po0mVQ0cd00yGK8eR7n'
 STRIPE_SECRET_KEY = 'sk_test_51NxZVrLeOSiFv2tS836x4B4TdKxd6decXlZLLQ4iOT3fa4szywswhSNy1dvQJCtDqE3b6VyiQhOTNGcLawxIOzvn00IN16rRk2'
 STRIPE_API_VERSION = '2022-08-01'
 STRIPE_WEBHOOK_SECRET = 'whsec_eb3b623c4a74014c4e4d0eb5be96c21776ab8d936bc8ccac2aec701796cdff3d'
+
+
+# Email server configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'elliotlinkon@gmail.com'
+EMAIL_HOST_PASSWORD = 'wdys btae zatt guyx'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
