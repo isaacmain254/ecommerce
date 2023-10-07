@@ -154,3 +154,8 @@ EMAIL_HOST_USER = 'elliotlinkon@gmail.com'
 EMAIL_HOST_PASSWORD = 'wdys btae zatt guyx'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# Redis settings
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
