@@ -70,7 +70,7 @@ Now create a superuser for your site using the following command:
 
 Open http://127.0.0.1:8000/admin/ in your browser to add a new category and product using the administration interface.
 
-Run the development server with the following command:
+Run the development server with the following command and open http://127.0.0.1:8000/ in your browser.
 ```
 python manage.py runserver
 ```
