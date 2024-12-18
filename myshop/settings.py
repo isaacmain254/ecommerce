@@ -133,10 +133,10 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
+# STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 
 # Default primary key field type
@@ -145,7 +145,7 @@ STATIC_ROOT = BASE_DIR / 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/'
-NEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # session
 CART_SESSION_ID = 'cart'
@@ -170,3 +170,14 @@ EMAIL_USE_TLS = True
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+# Celery Configuration Options
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'  # Your RabbitMQ broker URL
+
+# Enable broker connection retries on startup (future-proof for Celery 6.0+)
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+# Other Celery settings (example)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'rpc://'
