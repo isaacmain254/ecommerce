@@ -4,9 +4,13 @@ from cart.forms import CartAddProductForm
 from .recommender import Recommender
 
 def product_list(request, category_slug=None):
+    query = request.GET.get('search')
+    print(query)
     category = None
     catgories = Category.objects.all()
     products = Product.objects.filter(available=True)
+    if query:
+        products = products.filter(name__icontains=query)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)

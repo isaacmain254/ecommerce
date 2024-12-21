@@ -6,22 +6,29 @@
 
 {% block content %}
 <div class="product-detail">
-    <img src=" {% if product.image %}{{ product.image.url }} {% else %}{% static 'img/no_image.png' %} {% endif %} " alt="{{ product.name }}">
+    <div class='product-container'>
+    <img class='product-image' src=" {% if product.image %}{{ product.image.url }} {% else %}{% static 'img/no_image.png' %} {% endif %} " alt="{{ product.name }}">
+    <div class="product-info">
     <h1>{{ product.name }}</h1>
     <h2>
         <a href="{{product.category.get_absolute_url }}">{{ product.category }}</a>
     </h2>
     <p class="price">${{ product.price }}</p>
-    <form action="{% url 'cart:cart_add' product.id  %}" method="post">
+    <form class='add-to-cart-form' action="{% url 'cart:cart_add' product.id  %}" method="post">
         {{ cart_product_form }}
         {% csrf_token %}
+        <br />
         <input type="submit" value="{% trans "Add to cart" %}">
     </form>
-    {{ product.description|linebreaks }}
+    </div>
+    </div>
+    <p class='description'>Description</p>
+    <div class='product-description'>{{ product.description|linebreaks }}</div>
 
     {% if recommended_products %}
-        <div class="recommendations">
+    <div class="recommendations">
         <h3>{% trans "People who bought this also bought" %}</h3>
+        <div class='recommendations-container'>
         {% for p in recommended_products %}
         <div class="item">
         <a href="{{ p.get_absolute_url }}">
@@ -30,8 +37,9 @@
         </a>
         <p><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></p>
         </div>
-    {% endfor %}
-</div>
-{% endif %}
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock  %}

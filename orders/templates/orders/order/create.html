@@ -6,6 +6,7 @@
 
 {% block content %}
 <h1>{% trans "Checkout" %}</h1>
+<div class="order">
 <div class="order-info">
     <h3>{% trans "Your order" %}</h3>
     <ul>
@@ -33,4 +34,5 @@
     <p><input type="submit" value="{% trans "Place order" %}"></p>
     {% csrf_token %}
 </form>
+</div>
 {% endblock  %}

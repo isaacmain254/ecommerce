@@ -7,13 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% trans "My shop" %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+ {% comment %} <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> {% endcomment %}
+     <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>  
   </head>
   <body>
     <div id="header">
       <a href="/" class="logo">{% trans "My shop" %}</a>
-    <input id="search-input" type="text" id="search" name='search' placeholder='search'>
+    <form id="search-form" method="GET" action="{% url 'shop:product_list' %}">
+      <img class='search-icon' src='{% static "img/search-icon.png" %}' alt='Search icon' >
+    <input class="search-input" type="search" id="search" name='search' placeholder='search'>
+     {% comment %} <button class="search-button" type="submit">
+      <img class='search-icon' src='{% static "img/search-icon.png" %}' alt='Search icon' >
+    </button> {% endcomment %}
+    </form>
+    <div class="cart-icon-container">
+       {% with total_items=cart|length %}
+        <a href="{% url 'cart:cart_detail' %}">
+        <img src="{% static 'img/cart.png' %}" alt="Cart icon" class="cart-icon">
+        
+        {% if total_items > 0 %}
+        <span>{{total_items}}</span>
+        {% else %}
+        <span>0</span>
+          {% endif %}
+        </a>
+      {% endwith %} 
     </div>
-    <div id="subheader">
+    </div>
+       <form id='mobile-screen-search-form' class="search-form" method="GET" action="{% url 'shop:product_list' %}">
+      <img class='search-icon' src='{% static "img/search-icon.png" %}' alt='Search icon' >
+    <input class="search-input" type="search" id="search" name='search' placeholder='search'>
+     {% comment %} <button class="search-button" type="submit">
+      <img class='search-icon' src='{% static "img/search-icon.png" %}' alt='Search icon' >
+    </button> {% endcomment %}
+    </form>
+    {% comment %} <div id="subheader">
       <div class="cart">
         {% with total_items=cart|length %}
         {% if total_items > 0 %}
@@ -31,7 +59,8 @@
 
         {% endwith %}
       </div>
-    </div>
+    </div> {% endcomment %}
     <div id="content">{% block content %} {% endblock %}</div>
+      {% block extra_js %}{% endblock %}
   </body>
 </html>

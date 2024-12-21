@@ -6,11 +6,13 @@
 {% endblock %}
 
 {% block content %}
+<button id="toggle-sidebar"><img class='toggle-menu-icon' src="{% static 'img/menu.png'%}"></button>
+<div class='sidebar-content'>
 <div id="sidebar">
     <h3>Categories</h3>
     <ul>
         <li {% if not category %}class="selected"{% endif %}>
-            <a href="{% url 'shop:product_list' %}">ALl</a>
+            <a href="{% url 'shop:product_list' %}">All</a>
         </li>
         {% for c in categories %}
         <li {% if category.slug == c.slug %}class='selected'{% endif %} >
@@ -21,15 +23,32 @@
 </div>
 <div id="main" class="product-list">
     <h1 > {% if category  %}{{ category.name }}{% else %}Products{% endif %}</h1>
-    {% for product in products %}
-    <div class="item">
-        <a href="{{ product.get_absolute_url }}">
-            <img src=" {% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
-        </a>
-        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-        <br>
-        ${{ product.price }}
+    <div class='products'>
+    {% if products %}
+        {% for product in products %}
+            <div class="item">
+            <a href="{{ product.get_absolute_url }}">
+                <img src=" {% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+            </a>
+            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            <br>
+            ${{ product.price }}
+            </div>
+        {% endfor %}
+    {% else %}
+            <p>No products found.</p>
+    {% endif %}
     </div>
-    {% endfor %}
+</div>
 </div>
 {% endblock  %}
+
+  {% block extra_js %}
+<script>
+$(document).ready(function() {
+    $('#toggle-sidebar').click(function() {
+        $('#sidebar').toggle();
+    });
+});
+</script>
+  {% endblock %}
