@@ -1,5 +1,13 @@
 ECOMMERCE 
 ----------
+This is a simple e-commerce website built with Django. It allows users to browse products, add them to the cart, and purchase them using Stripe. The website also includes an administration interface that allows the site owner to add, update, and delete products.
+
+
+![E-commerce products page](/.github/images/products-list-page.png "E-commerce products list page")
+
+
+![Shopping cart page](/.github/images/shopping-cart.png "Shopping Cart")
+
 
 To run the project locally: clone this repository on your computer
 

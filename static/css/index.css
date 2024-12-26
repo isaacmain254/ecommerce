@@ -233,6 +233,7 @@ ul.errorlist {
   display: block;
   float: left;
   border-radius: 7px;
+  height: max-content;
 }
 #sidebar h3 {
   padding: 0 10px;
